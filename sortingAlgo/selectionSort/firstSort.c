@@ -5,21 +5,18 @@ void Swap(int *a, int *b) {
     *a = *b;
     *b = temp;
 }
-bool swapped;
 
-void Bubsort(int a[], int n) {
+void Selsort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {
-        swapped = false;
-        for (int j = 0; j < n-i-1; j++) {
-            if (a[j] > a[j+1]) {
-                Swap(&a[j], &a[j+1]);
-                swapped=true;
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] < a[minIndex]) {
+                minIndex = j;
             }
         }
-    if(swapped==false)
-    {
-        break;
-    }
+        if (minIndex != i) {
+            Swap(&a[minIndex], &a[i]);
+        }
     }
 }
 
@@ -33,7 +30,7 @@ void Print(int a[], int len) {
 int main() {
     int a[] = {1, 4, 9, 6, 2};
     int size = sizeof(a) / sizeof(a[0]);
-    Bubsort(a, size);
+    Selsort(a, size);
     Print(a, size);
     return 0;
 }
